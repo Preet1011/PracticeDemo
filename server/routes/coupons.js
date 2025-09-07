@@ -12,11 +12,23 @@ router.post('/', async (req, res, next) => {
 router.get('/apply/:code', async (req, res, next) => {
   try {
     const { code } = req.params;
-    const c = await Coupon.findOne({ code: code.toUpperCase(), active: true });
+
+    const c = await Coupon.findOne({ 
+      code: code.toUpperCase(), 
+      active: true 
+    });
+
     if (!c) return res.status(404).json({ message: 'Coupon not found' });
-    if (c.expiresAt && new Date(c.expiresAt) < new Date()) return res.status(400).json({ message: 'Coupon expired' });
+
+    if (c.expiresAt && new Date(c.expiresAt) < new Date()) {
+      return res.status(400).json({ message: 'Coupon expired' });
+    }
+
     res.json(c);
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 });
+
 
 export default router;

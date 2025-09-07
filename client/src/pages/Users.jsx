@@ -7,7 +7,6 @@ export default function Users() {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'user' });
   const [editingId, setEditingId] = useState(null);
 
-  // fetch users
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -22,7 +21,6 @@ export default function Users() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Add or Update user
   const handleSubmit = e => {
     e.preventDefault();
     if (editingId) {
@@ -103,8 +101,6 @@ export default function Users() {
           {editingId ? 'Update User' : 'Add User'}
         </button>
       </form>
-
-      {/* Users Table */}
       <table className="table table-bordered">
         <thead>
           <tr>

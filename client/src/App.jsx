@@ -9,7 +9,8 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
-import Users from './pages/Users';
+import Users from './pages/NewUsers';
+// import Users from './pages/Users';
 
 export default function App(){
   return (
@@ -23,7 +24,8 @@ export default function App(){
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/users" element={<Users />} /> 
+          {/* <Route path="/users" element={<Users />} /> */}
         </Routes>
       </div>
       {/* <Footer /> */}
