@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
-export default function Login() {
+const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [err, setErr] = useState('');
   const { login } = useAuth();
@@ -24,7 +24,6 @@ export default function Login() {
 
   return (
     <div className="container-fluid vh-100 d-flex">
-      {/* Left Section: Welcome */}
       <div className="col-md-6 d-flex justify-content-center align-items-center bg-gradient-left">
         <div className="text-center text-white p-5">
           <h1 className="display-3 font-weight-bold text-shadow">Welcome Back!</h1>
@@ -32,8 +31,6 @@ export default function Login() {
           <p className="lead">Log in and enjoy your personalized experience!</p>
         </div>
       </div>
-
-      {/* Right Section: Login Form */}
       <div className="col-md-6 d-flex justify-content-center align-items-center bg-form">
         <div className="form-card shadow-lg rounded-lg p-4">
           <h2 className="text-center mb-4">Login to Your Account</h2>
@@ -68,4 +65,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;

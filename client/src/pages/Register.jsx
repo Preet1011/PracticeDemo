@@ -3,7 +3,7 @@ import { API } from '../api';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
-export default function Register() {
+const Register=()=> {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [err, setErr] = useState('');
   const nav = useNavigate();
@@ -22,7 +22,6 @@ export default function Register() {
 
   return (
     <div className="container-fluid vh-100 d-flex">
-      {/* Left Section: Welcome */}
       <div className="col-md-6 d-flex justify-content-center align-items-center bg-gradient-left">
         <div className="text-center text-white p-5">
           <h1 className="display-3 font-weight-bold text-shadow">Welcome to Ecom</h1>
@@ -33,8 +32,6 @@ export default function Register() {
           </div>
         </div>
       </div>
-      
-      {/* Right Section: Registration Form */}
       <div className="col-md-6 d-flex justify-content-center align-items-center bg-form">
         <div className="form-card shadow-lg rounded-lg p-4">
           <h2 className="text-center mb-4">Create Your Account</h2>
@@ -77,3 +74,4 @@ export default function Register() {
     </div>
   );
 }
+export default Register;

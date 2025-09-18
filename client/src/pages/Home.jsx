@@ -1,7 +1,7 @@
 import { useAuth } from '../context/AuthContext';
 import React from 'react';
 
-export default function Home() {
+const Home = () =>  {
   const { user } = useAuth();
 
   return (
@@ -16,3 +16,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home;

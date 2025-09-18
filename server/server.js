@@ -4,6 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 import authRouter from './routes/auth.js';
 import usersRouter from './routes/users.js';
@@ -21,6 +22,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());       
 app.use(morgan('dev'));
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API } from '../api';
 
-export default function Users() {
+const Users = () => {
   const [users, setUsers] = useState([]);
   const [err, setErr] = useState('');
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'user' });
@@ -57,8 +57,6 @@ export default function Users() {
     <div className="container mt-4">
       <h2>Users (Protected)</h2>
       {err && <div className="alert alert-warning">{err}</div>}
-
-      {/* Add/Edit Form */}
       <form onSubmit={handleSubmit} className="mb-4">
         <input
           className="form-control mb-2"
@@ -124,3 +122,4 @@ export default function Users() {
     </div>
   );
 }
+export default Users;

@@ -80,52 +80,52 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   }
 });
 
-router.post('/uploadcsv', requireAuth, upload.single('file'), async (req, res, next) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'Please upload a CSV file.' });
-    }
+// router.post('/uploadcsv', requireAuth, upload.single('file'), async (req, res, next) => {
+//   try {
+//     if (!req.file) {
+//       return res.status(400).json({ message: 'Please upload a CSV file.' });
+//     }
 
-    const rawCSV = req.file.buffer.toString();
-    const csvUsers = await csv().fromString(rawCSV);
+//     const rawCSV = req.file.buffer.toString();
+//     const csvUsers = await csv().fromString(rawCSV);
 
-    const validUsers = [];
+//     const validUsers = [];
 
-    for (const item of csvUsers) {
-      const { name, email, password, role } = item;
+//     for (const item of csvUsers) {
+//       const { name, email, password, role } = item;
 
-      if (!name || !email || !password) continue;
+//       if (!name || !email || !password) continue;
 
-      const exists = await User.findOne({ email });
-      if (exists) continue;
+//       const exists = await User.findOne({ email });
+//       if (exists) continue;
 
-      validUsers.push({
-        name,
-        email,
-        password, 
-        role: role || 'user'
-      });
-    }
+//       validUsers.push({
+//         name,
+//         email,
+//         password, 
+//         role: role || 'user'
+//       });
+//     }
 
-    if (validUsers.length === 0) {
-      return res.status(400).json({ message: 'No valid users found in CSV.' });
-    }
+//     if (validUsers.length === 0) {
+//       return res.status(400).json({ message: 'No valid users found in CSV.' });
+//     }
 
-    const createdUsers = await User.insertMany(validUsers);
+//     const createdUsers = await User.insertMany(validUsers);
 
-    res.status(201).json({
-      message: `${createdUsers.length} users uploaded successfully.`,
-      users: createdUsers.map(u => ({
-        id: u._id,
-        name: u.name,
-        email: u.email,
-        role: u.role
-      }))
-    });
+//     res.status(201).json({
+//       message: `${createdUsers.length} users uploaded successfully.`,
+//       users: createdUsers.map(u => ({
+//         id: u._id,
+//         name: u.name,
+//         email: u.email,
+//         role: u.role
+//       }))
+//     });
 
-  } catch (err) {
-    next(err);
-  }
-});
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 export default router;
